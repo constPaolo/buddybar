@@ -1,0 +1,63 @@
+{
+  "name": "buddybar",
+  "version": "0.1.0",
+  "description": "A tiny always-on-top bar of buddies that shows what your Claude Code agents are doing, and lets you allow permissions and answer questions without opening your editor.",
+  "main": "src/main.js",
+  "author": "Paolo Meccariello",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "agents",
+    "vscode",
+    "electron",
+    "desktop-widget",
+    "productivity"
+  ],
+  "scripts": {
+    "start": "electron .",
+    "demo": "node scripts/demo.js",
+    "hooks:install": "node scripts/hooks-setup.js install",
+    "hooks:uninstall": "node scripts/hooks-setup.js uninstall",
+    "hooks:status": "node scripts/hooks-setup.js status",
+    "test": "node --test \"test/**/*.test.js\"",
+    "dist": "electron-builder",
+    "dist:mac": "electron-builder --mac",
+    "dist:win": "electron-builder --win",
+    "screenshots": "electron scripts/screenshots/run.js"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "dev.buddybar.app",
+    "productName": "Buddybar",
+    "files": [
+      "src/**/*",
+      "hooks/**/*",
+      "scripts/hooks-setup.js",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "extendInfo": {
+        "LSUIElement": true
+      }
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    }
+  }
+}
